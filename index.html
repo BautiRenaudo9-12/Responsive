@@ -1,130 +1,99 @@
-<!-- 
-Responsive HTML Table With Pure CSS - Web Design/UI Design
-
-Code written by:
-👨🏻‍⚕️ Coding Design (Jeet Saru)
-
-> You can do whatever you want with the code. However if you love my content, you can **SUBSCRIBED** my YouTube Channel.
-
-🌎link: www.youtube.com/codingdesign 
- -->
 <!DOCTYPE html>
 <html lang="en" title="Coding design">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Usuarios</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>
 </head>
 
 <body>
-
   <header>
     <div class="nombre-trabajo">
-      <h2 class="animate__animated animate__pulse">Introduccion al formateo CSS</h2>
+      <h2 class="animate__animated animate__pulse">
+        Introduccion al formateo CSS
+      </h2>
     </div>
   </header>
 
   <div class="div-modal">
+    <div class="fondo"></div>
     <div class="login-box animate__animated animate__fadeInDown animate__faster">
       <div class="close-modal-button">x</div>
-      <form>
+      <form id="user-form">
         <div class="user-box">
-          <input type="text" name="" required>
+          <input type="text" id="nombre-completo" name="" required autocomplete="off" />
           <label>Nombre Completo</label>
         </div>
         <div class="user-box">
-          <input type="number" name="" required>
-          <label>DNI</label>
-        </div>
-        <div class="user-box">
-          <input type="number" name="" required>
+          <input type="number" id="edad" name="" required autocomplete="off" />
           <label>Edad</label>
         </div>
         <div class="user-box">
-          <input type="text" name="" required>
+          <input type="number" id="dni" name="" required autocomplete="off" />
+          <label>DNI</label>
+        </div>
+        <div class="user-box">
+          <input type="email" id="email" name="" required autocomplete="off" />
           <label>Email</label>
         </div>
         <div class="user-box">
-          <input type="file" name="" required>
+          <input type="file" id="input-file" name="" required autocomplete="off" />
+          <label for="input-file">UPLOAD</label>
         </div>
         <center>
-          <a href="#" type="submit" id="ocultar-modal">
+          <button href="#" class="enviar" type="submit" id="ocultar-modal">
             SEND
             <span></span>
-          </a>
+          </button>
         </center>
       </form>
     </div>
   </div>
 
-
   <main class="table">
     <section class="table__header">
       <h1 id="ttable">Usuarios</h1>
       <div class="input-group">
-        <input type="search" placeholder="Search Data...">
-        <img src="images/search.png" alt="">
+        <input type="search" placeholder="Search Data..." />
+        <img src="images/search.png" alt="" />
       </div>
       <div class="agregar">
         <label for="agregar" class="agregar-btn" title="Agregar Usuarios"></label>
-        <input type="checkbox" id="agregar">
+        <input type="checkbox" id="agregar" />
       </div>
     </section>
     <section class="table__body">
       <table>
         <thead>
           <tr class="head">
-            <th> Id <span class="icon-arrow">&UpArrow;</span></th>
-            <th> Nombre <span class="icon-arrow">&UpArrow;</span></th>
-            <th> DNI <span class="icon-arrow">&UpArrow;</span></th>
-            <th> Edad <span class="icon-arrow">&UpArrow;</span></th>
-            <th> Email <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Id <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Nombre <span class="icon-arrow">&UpArrow;</span></th>
+            <th>DNI <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Edad <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Email <span class="icon-arrow">&UpArrow;</span></th>
           </tr>
         </thead>
-        <tbody id="cuerpo">
-
-        </tbody>
+        <tbody id="cuerpo"></tbody>
       </table>
     </section>
   </main>
+
+  <script src="modal.js"></script>
+
   <script>
-    const tabla = document.querySelector("#cuerpo");
-    const opciones = {
-      method: "POST",
-    };
-
-    fetch("consulta.php", opciones)
-      .then((respuesta) => respuesta.json())
-      .then((resultado) => {
-        resultado.forEach((elemento) => {
-          tabla.innerHTML += `
-                    <tr>
-                        <td> ${elemento.id} </td>
-                        <td> <img src="${elemento.archivo}" alt="">${elemento.nombre_completo}</td>
-                        <td> ${elemento.dni} </td>
-                        <td> ${elemento.edad} </td>
-                        <td>
-                            ${elemento.email}
-                        </td>
-                    </tr>
-            `;
-        });
-      });
-
-
     var input = document.getElementById("dni");
     input.addEventListener("input", function () {
       if (this.value.length > 8) this.value = this.value.slice(0, 8);
     });
-
 
     var input = document.getElementById("edad");
     input.addEventListener("input", function () {
